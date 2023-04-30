@@ -1,0 +1,13 @@
+# Import your libraries
+import pandas as pd
+
+# Start writing code
+#fb_eu_energy.head()
+
+#1-Combine all the data frame to get all the data Consumption at one place 
+#The equivalent for UNION and UNION ALL is pandas' . concat method, or previously the . append method.
+#2-Sum Consumption by date across all the data center
+#3-Group by date ,so date will be act as index rightnow,by reset_index will be convert to index to column 
+#4-Get the maximum consumption value from the dataframe and we will comapre this value with each row and one true ,flase list will get generated .We will pass that list to the data frame to get the maximum value along with whole row
+df=pd.concat([fb_eu_energy, fb_asia_energy, fb_na_energy]).groupby('date')['consumption'].sum().reset_index().sort_values(by='consumption',ascending=False)
+df[df['consumption']==df.consumption.max()]
