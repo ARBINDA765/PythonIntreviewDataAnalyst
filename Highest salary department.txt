@@ -1,0 +1,10 @@
+# Import your libraries
+import pandas as pd
+
+# Start writing code
+highest_sal=employee.groupby('department')['salary'].max().reset_index().rename(columns={'salary':'max_salary'})
+
+df=pd.merge(employee,highest_sal,on='department',how='left')
+df[df['salary']==df['max_salary']][['department','first_name','salary']]
+
+https://platform.stratascratch.com/coding/9897-highest-salary-in-department?code_type=2
